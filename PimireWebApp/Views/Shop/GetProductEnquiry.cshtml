@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["title"] = "Customer Enquiries";
+}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h6 class="mb-0">Customer Enquiries </h6>
+      
+    </div>
+
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>                     
+                    <th>Customer Name</th>                                    
+                    <th>Enquiry Product</th>
+                    <th>Mobile Number</th>    
+                   <th>Email</th>
+                   <th>Address</th> 
+                   <th>Comments</th> 
+                   <th>Email Sent</th>
+                   <th>Email Received</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyProductCategories" class="table-border-bottom-0">
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            getEnquiries();
+        })
+        function getEnquiries() {
+            let tbody = '';
+            $.ajax({
+                type: "GET",
+                url: "/Shop/get-customer-enquiry",
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode = 200) {
+                        let data = $.parseJSON(response.data);
+                        $.each(data, function(index, value) {
+                            tbody += '<tr><td>' + value.CustomerName + '</td><td>' + value.SubCategoryTitle + '</td><td>' + value.CustomerMobile + '</td><td>' + value.CustomerEmail + '</td><td>' + value.CustomerAddress + '</td><td>' + value.Comments + '</td><td><span class="badge rounded-pill ' + (value.IsEmailSent ? 'bg-label-primary' : 'bg-label-danger') + ' me-1">' + (value.IsEmailSent ? 'Sent' : 'Not sent') + '</span></td><td><span class="badge rounded-pill ' + (value.IsEmailReceived ? 'bg-label-primary' : 'bg-label-danger') + ' me-1">' + (value.IsEmailReceived ? 'Sent' : 'Not sent') + '</span></td></tr>';
+                        })
+                        $("#tbodyProductCategories").html(tbody);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function DeleteProductCategory(productCategoryId) {
+            $.ajax({
+                type: "GET",
+                url: "/Products/DeleteProductCategory?id=" + productCategoryId,
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode == 200) {
+                        ShowAlert("success", response.statusMessage);
+                        getProductCategories();
+                    }
+                    else {
+                        ShowAlert("error", response.statusMessage);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function EditProductCategory(productCategoryId) {
+            window.location.href = "/Products/EditProductCategory?id=" + productCategoryId;
+        }
+    </script>
+}

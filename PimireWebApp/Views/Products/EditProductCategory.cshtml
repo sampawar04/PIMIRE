@@ -1,0 +1,143 @@
+﻿@{
+    ViewData["title"] = "Edit Product Category";
+}
+<div class="row">
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">Product Category</h6>
+                <small class="text-muted float-end"><a asp-controller="Products" asp-action="GetProductCategories"><span class="mdi mdi-keyboard-backspace"></span>Go back</a></small>
+            </div>
+            <div class="card-body">
+
+                <form id="frmProductCategory" class="needs-validation" autocomplete="off" novalidate="">
+                    <input type="hidden" id="hdnCategoryId" />
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="txtCategoryName">Category Name <span class="text-danger">*</span></label>
+                        <div class="col-sm-4">
+                            <div class="input-group input-group-merge">
+
+                                <input type="text"
+                                       class="form-control"
+                                       id="txtCategoryName"
+                                       aria-describedby="basic-icon-default-fullname2" />
+                            </div>
+                            <span class="error-message text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="txtDescription">Description</label>
+                        <div class="col-sm-4">
+                            <div class="input-group input-group-merge">
+
+                                <textarea id="txtDescription"
+                                          class="form-control"
+                                          aria-describedby="txtDescription2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="chkIsActive">IsActive <span class="text-danger">*</span></label>
+                        <div class="col-sm-4">
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" value="" id="chkIsActive" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            let searchParams = new URLSearchParams(window.location.search);
+            let productCategoryId = searchParams.get('id');
+            GetProductCategory(productCategoryId);
+            $("#btnSave").click(function() {
+                if (!ValidateForm())
+                    return false;
+
+                let formData = {
+                    "Id": $("#hdnCategoryId").val(),
+                    "Title": $("#txtCategoryName").val(),
+                    "Description": $("#txtDescription").val(),
+                    "IsActive": $("#chkIsActive").prop('checked')
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Products/UpdateProductCategory",
+                    data: { "productCategory": formData },
+                    beforeSend: function() {
+                        ShowLoader();
+                    },
+                    success: function(response) {
+                        if (response.statusCode > 0) {
+                            ShowAlert("success", response.statusMessage);
+                        }
+                        else {
+                            ShowAlert("error", response.statusMessage);
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    },
+                    complete: function() {
+                        HideLoader();
+                    }
+                })
+
+            })
+            $("#txtCategoryName").keyup(function() {
+                ValidateForm();
+            });
+        })
+        function ValidateForm() {
+            let isValid = true;
+            let categoryName = $("#txtCategoryName").val().trim();
+            if (categoryName == '') {
+                $(".error-message").text('Please enter the category name');
+                isValid = false;
+            }
+            else
+                $(".error-message").text('');
+            return isValid;
+        }
+        function GetProductCategory(productCategoryId) {
+            $.ajax({
+                type: "GET",
+                url: "/Products/GetProductCategory?id=" + productCategoryId,
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode == 200) {
+                        let productCategory = $.parseJSON(response.data);
+                        $("#hdnCategoryId").val(productCategory.Id);
+                        $("#txtCategoryName").val(productCategory.Title);
+                        $("#txtDescription").val(productCategory.Description);
+                        $("#chkIsActive").prop('checked', productCategory.IsActive);
+                    }
+                    else {
+                        ShowAlert("error", response.statusMessage);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+    </script>
+}

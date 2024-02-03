@@ -1,0 +1,294 @@
+﻿@{
+    ViewData["title"] = "Product Details";
+}
+<div class="row">
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">Product Detail</h6>
+                <small class="text-muted float-end"><a asp-controller="Shop" asp-action="product-list"><span class="mdi mdi-keyboard-backspace"></span>Go back</a></small>
+            </div>
+            <div class="card-body">
+                <input type="hidden" id="hdnProductCategoryId" value="0" />
+                <input type="hidden" id="hdnProductSubCategoryId" value="0" />
+                <div class="row">
+                    <div class="col-4">
+                        <div class="text-center">
+                            <img id="imgProduct" width="100%" height="100%" src="..." class="rounded" alt="...">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <form id="form-sub-category" class="needs-validation" autocomplete="off" novalidate="">
+
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="txtName">Name</label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-merge">
+
+                                        <span id="txtName"></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="ddlProductCategory">Product Category</label>
+                                <div class="col-9">
+                                    <span id="ddlProductCategory"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="txtDescription">Description</label>
+                                <div class="col-9">
+                                    <span id="txtDescription"></span>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="txtPrice">Price</label>
+                                <div class="col-9">
+                                    <span id="txtPrice"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="txtMfgDate">Mfg Date</label>
+                                <div class="col-9">
+                                    <span id="txtMfgDate"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-3 col-form-label" for="chkIsActive">IsActive</label>
+                                <div class="col-9">
+                                    <div class="form-check mt-3">
+                                        <input class="form-check-input" type="checkbox" value="" id="chkIsActive" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-10">
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#basicModal">
+                                        Enquiry
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Product Enquiry</h4>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmEnquiry">
+                          <div class="row">
+                        <div class="col mb-4 mt-2">
+                            <div class="form-floating form-floating-outline">
+                                <input type="text" id="txtCustomerName" class="form-control" />
+                                <label for="txtCustomerName">Name <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-4 mt-2">
+                            <div class="form-floating form-floating-outline">
+                                <input type="text" id="txtMobileNumber" class="form-control" onkeypress="return isNumberKey(event,this)" maxlength="10"/>
+                                <label for="txtMobileNumber">Mobile Number <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-2">
+                            <div class="form-floating form-floating-outline">
+                                <input type="email"
+                                       id="txtCustomerEmail"
+                                       class="form-control" />
+                                <label for="txtCustomerEmail">Email <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col mb-4 mt-2">
+                            <div class="form-floating form-floating-outline">
+                                <textarea type="text" id="txtAddress" class="form-control"></textarea>
+                                <label for="txtAddress">Address</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4 mt-2">
+                        <div class="form-floating form-floating-outline">
+                            <textarea type="text" id="txtComment" class="form-control"></textarea>
+                            <label for="txtComments">Comments</label>
+                        </div>
+                    </div>
+                    </form>
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" id="btnCloseEnquiry" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" id="btnSendEnquiry" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            //let searchParams = new URLSearchParams(window.location.search);
+            let productSubCategoryId = window.location.href.split('/')[5];
+            GetProductSubCategory(productSubCategoryId);
+            $("#frmEnquiry").find('input').keyup(function() {
+                ValidateForm();
+            });
+            $("#btnSendEnquiry").click(function() {
+                if (!ValidateForm())
+                    return false;
+                let categoryId = $("#hdnProductCategoryId").val().trim();
+                let subCategoryId = $("#hdnProductSubCategoryId").val().trim();
+                let name = $("#txtCustomerName").val().trim();
+                let mobileNumber = $("#txtMobileNumber").val().trim();
+                let email = $("#txtCustomerEmail").val().trim();
+                let comments = $("#txtComment").val().trim();
+                let address = $("#txtAddress").val().trim();
+
+                let formData = {
+                    "Id": 0,
+                    "CategoryId": categoryId,
+                    "SubCategoryId": subCategoryId,
+                    "CustomerName": name,
+                    "CustomerEmail": email,
+                    "CustomerMobile": mobileNumber,
+                    "CustomerAddress": address,
+                    "Comments": comments,
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/Shop/ProductEnquiry",
+                    data: { "enquiry": formData },                   
+                    beforeSend: function() {
+                        ShowLoader();
+                    },
+                    success: function(response) {
+                        if (response.statusCode == 200) {                            
+                            ShowAlert("success", response.statusMessage);
+                        }
+                        else {
+                            ShowAlert("error", response.statusMessage);
+                        }
+                        $("#btnCloseEnquiry").trigger('click');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        $("#btnCloseEnquiry").trigger('click');
+                        ShowAlert("error", error.responseText);
+                    },
+                    complete: function() {
+                        HideLoader();
+                    }
+                })
+
+            })
+            $("#btnCloseEnquiry").click(function() {
+                ResetForm();
+            })
+        })
+        function ValidateForm() {
+            let isValid = true;
+            let name = $("#txtCustomerName").val().trim();
+            let mobileNumber = $("#txtMobileNumber").val().trim();
+            let email = $("#txtCustomerEmail").val().trim();
+
+            if (name == '') {
+                $("#txtCustomerName").css('borderColor','red');
+                isValid = false;
+            }
+            else 
+                $("#txtCustomerName").css('borderColor','#d4d3d5');;
+
+            if (mobileNumber == '') {
+                $("#txtMobileNumber").css('borderColor','red');
+                isValid = false;
+            }
+            else 
+                $("#txtMobileNumber").css('borderColor','#d4d3d5');;
+
+            if (email == '') {
+                $("#txtCustomerEmail").css('borderColor','red');
+                isValid = false;
+            }
+            else 
+                $("#txtCustomerEmail").css('borderColor','#d4d3d5');;
+
+            if (!validateEmail(email)) {
+                $("#txtCustomerEmail").css('borderColor','red');
+                isValid = false;
+            }
+            else 
+                $("#txtCustomerEmail").css('borderColor','#d4d3d5');;
+            return isValid;
+        }
+               
+        function GetProductSubCategory(productSubCategoryId) {
+            $.ajax({
+                type: "GET",
+                url: "/Shop/ProductDetail?id=" + productSubCategoryId,
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode == 200) {
+                        let productSubCategory = $.parseJSON(response.data);
+                        $("#hdnProductCategoryId").val(productSubCategory.CategoryId);
+                        $("#hdnProductSubCategoryId").val(productSubCategory.Id);
+                        $("#txtPrice").text(productSubCategory.ProductSubCategoryDetail.Price);
+                        $("#txtMfgDate").text(productSubCategory.ProductSubCategoryDetail.MfgDate.substring(0, 10));
+                        //$("#ddlProductCategory").val(productSubCategory.CategoryId);
+                        $("#txtName").text(productSubCategory.Title);
+                        $("#txtDescription").text(productSubCategory.Description);
+                        $("#chkIsActive").prop('checked', productSubCategory.IsActive);
+                        $("#ddlProductCategory").text(productSubCategory.CategoryTitle);
+                        $("#imgProduct").attr("src", '\\' + productSubCategory.ProductSubCategoryDetail.ImageUrl);
+                        //$('#imgProduct').val(null);
+                    }
+                    else {
+                        ShowAlert("error", response.statusMessage);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function ResetForm() {
+            $("#hdnProductCategoryId").val('');
+            $("#hdnProductSubCategoryId").val('');
+            $("#txtCustomerName").val('').css('borderColor','#d4d3d5');;
+            $("#txtMobileNumber").val('').css('borderColor','#d4d3d5');;
+            $("#txtCustomerEmail").val('').css('borderColor','#d4d3d5');;
+            $("#txtComment").val('');
+            $("#txtAddress").val('');
+        }
+    </script>
+}

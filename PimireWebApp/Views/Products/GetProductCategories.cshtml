@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["title"] = "Product Categories";
+}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h6 class="mb-0">Product Categories </h6>
+        <small class="text-muted float-end"><a asp-controller="Products" asp-action="AddProductCategory">Add New Category</a></small>
+    </div>
+
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyProductCategories" class="table-border-bottom-0">
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            getProductCategories();
+        })
+        function getProductCategories() {
+            let tbody = '';
+            $.ajax({
+                type: "GET",
+                url: "/Products/ProductCategories",
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode = 200) {
+                        let data = $.parseJSON(response.data);
+                        if (data.length > 0) {
+                            $.each(data, function(index, value) {
+                                tbody += '<tr><td>' + value.Title + '</td><td>' + value.Description + '</td><td><span class="badge rounded-pill ' + (value.IsActive ? 'bg-label-primary' : 'bg-label-danger') + ' me-1">' + (value.IsActive ? 'Active' : 'Inactive') + '</span></td><td><div class="dropdown">';
+                                tbody += '<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>';
+                                tbody += '<div class="dropdown-menu">';
+                                tbody += '<a class="dropdown-item" href="javascript:EditProductCategory(' + value.Id + ');"><i class="mdi mdi-pencil-outline me-1"></i> Edit</a>';
+                                tbody += '<a class="dropdown-item" href="javascript:DeleteProductCategory(' + value.Id + ');"><i class="mdi mdi-trash-can-outline me-1"></i> Delete</a></div></div></td></tr>';
+                            })
+                        }
+                        else
+                            tbody += '<tr><td colspan="6" class="text-center">Sub Category data is not available</td></tr>';
+                        $("#tbodyProductCategories").html(tbody);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function DeleteProductCategory(productCategoryId) {
+            $.ajax({
+                type: "GET",
+                url: "/Products/DeleteProductCategory?id=" + productCategoryId,
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode == 200) {
+                        ShowAlert("success", response.statusMessage);
+                        getProductCategories();
+                    }
+                    else {
+                        ShowAlert("error", response.statusMessage);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function EditProductCategory(productCategoryId) {
+            window.location.href = "/Products/EditProductCategory?id=" + productCategoryId;
+        }
+    </script>
+}

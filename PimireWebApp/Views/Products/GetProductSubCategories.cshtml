@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["title"] = "Product Sub Categories";
+}
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <h6 class="mb-0">Product Sub Categories </h6>
+        <small class="text-muted float-end"><a asp-controller="Products" asp-action="add-product">Add New SubCategory</a></small>
+    </div>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                     <th>Image</th>
+                    <th>Product Category</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyProductSubCategories" class="table-border-bottom-0">
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            getProductSubCategories();           
+        })       
+        function getProductSubCategories() {
+            let tbody = '';
+            $.ajax({
+                type: "GET",
+                url: "/Products/ProductSubCategories",
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode = 200) {
+                        let data = $.parseJSON(response.data);
+                        if (data.length > 0) {
+                            $.each(data, function(index, value) {
+                                let imageHtml = '<img src="/' + value.ImageURL + '" alt="Avatar" height="50px" width="50px" class="rounded-circle" />';
+                                //imageHtml += '</li></ul>'
+                                tbody += '<tr><td>' + value.Title + '</td><td>' + imageHtml + '</td><td>' + value.CategoryTitle + '</td><td>' + value.Description + '</td><td><span class="badge rounded-pill ' + (value.IsActive ? 'bg-label-primary' : 'bg-label-danger') + ' me-1">' + (value.IsActive ? 'Active' : 'Inactive') + '</span></td><td><div class="dropdown">';
+                                tbody += '<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>';
+                                tbody += '<div class="dropdown-menu">';
+                                tbody += '<a class="dropdown-item" href="javascript:EditProductSubCategory(' + value.Id + ');"><i class="mdi mdi-pencil-outline me-1"></i> Edit</a>';
+                                tbody += '<a class="dropdown-item" href="javascript:DeleteProductSubCategory(' + value.Id + ');"><i class="mdi mdi-trash-can-outline me-1"></i> Delete</a></div></div></td></tr>';
+                            })
+                        }
+                        else
+                            tbody += '<tr><td colspan="6" class="text-center">Sub Category data is not available</td></tr>';
+                       
+                        $("#tbodyProductSubCategories").html(tbody);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function DeleteProductSubCategory(productSubCategoryId) {
+            $.ajax({
+                type: "GET",
+                url: "/Products/DeleteProductSubCategory?id="+productSubCategoryId,
+                beforeSend: function() {
+                    ShowLoader();
+                },
+                success: function(response) {
+                    if (response.statusCode ==200) {
+                        ShowAlert("success", response.statusMessage);
+                        getProductSubCategories();
+                    }
+                    else {
+                        ShowAlert("error", response.statusMessage);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function() {
+                    HideLoader();
+                }
+            })
+        }
+        function EditProductSubCategory(productSubCategoryId) {
+             window.location.href = "/Products/EditProductSubCategory?id=" + productSubCategoryId;
+        }
+    </script>
+}
