@@ -71,5 +71,17 @@ namespace PimireWebApp.Controllers
 
             return View();
         }
+        [ActionName("about-us")]
+        [HttpGet]
+        public IActionResult AboutUs()
+        {
+            return View("AboutUs");
+        }
+        [ActionName("contact-us")]
+        [HttpGet]
+        public IActionResult ContactUs()
+        {
+            return View("ContactUs");
+        }
     }
 }
