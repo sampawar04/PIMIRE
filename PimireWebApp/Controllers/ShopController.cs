@@ -21,8 +21,8 @@ namespace PimireWebApp.Controllers
         {
             try
             {
-                List<SubCategoryViewModel> subCategories = _Product.GetProductSubCategories()
-                    .Join(_Product.GetProductCategories(), x => x.CategoryId, y => y.Id, (x, y) => new SubCategoryViewModel
+                List<SubCategoryViewModel> subCategories = _Product.GetProductSubCategories().Where(subCategories=>subCategories.IsActive)
+                    .Join(_Product.GetProductCategories().Where(product=>product.IsActive), x => x.CategoryId, y => y.Id, (x, y) => new SubCategoryViewModel
                     {
                         CategoryId = x.CategoryId,
                         CategoryTitle = y.Title,

@@ -5,93 +5,104 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PimireWebApp
 build_property.RootNamespace = PimireWebApp
-build_property.ProjectDir = F:\Projects\PimireWebApp\
+build_property.ProjectDir = C:\Users\hp\Desktop\Samadhan\Git\PIMIRE\PimireWebApp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\Projects\PimireWebApp
+build_property.MSBuildProjectDirectory = C:\Users\hp\Desktop\Samadhan\Git\PIMIRE\PimireWebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/Projects/PimireWebApp/Views/Authenticate/Login.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Authenticate/AboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRlXEFib3V0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Authenticate/ContactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRlXENvbnRhY3RVcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Authenticate/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRlXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Home/Index.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Home/Privacy.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/AddProductCategory.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/AddProductCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQWRkUHJvZHVjdENhdGVnb3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/AddProductSubCategory.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/AddProductSubCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQWRkUHJvZHVjdFN1YkNhdGVnb3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/EditProductCategory.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/EditProductCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdFByb2R1Y3RDYXRlZ29yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/EditProductSubCategory.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/EditProductSubCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdFByb2R1Y3RTdWJDYXRlZ29yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/GetProductCategories.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/GetProductCategories.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcR2V0UHJvZHVjdENhdGVnb3JpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/GetProductSubCategories.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/GetProductSubCategories.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcR2V0UHJvZHVjdFN1YkNhdGVnb3JpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Products/shopping.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Products/shopping.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcc2hvcHBpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shared/Error.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shared/_Layout_Login.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/_Layout_Horizontal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfSG9yaXpvbnRhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/_Layout_Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shared/_Layout_Without_NavBar.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/_Layout_Without_NavBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfV2l0aG91dF9OYXZCYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shop/GetProductEnquiry.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shop/GetProductEnquiry.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxHZXRQcm9kdWN0RW5xdWlyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shop/ProductDetail.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shop/ProductDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxQcm9kdWN0RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shop/ProductList.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shop/ProductList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxQcm9kdWN0TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/_ViewImports.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/_ViewStart.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Projects/PimireWebApp/Views/Shared/_Layout.cshtml]
+[C:/Users/hp/Desktop/Samadhan/Git/PIMIRE/PimireWebApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-aocxu7gvsl
